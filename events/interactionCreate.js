@@ -10,11 +10,11 @@ const fs = require("fs");
 module.exports = async (client, interaction, button) => {
     if (interaction.isCommand()){
     try {
-      fs.readdir("./slashKomutlar/", (err, files) => {
+      fs.readdir("./letKomutlar/", (err, files) => {
         if (err) throw err;
 
         files.forEach(async (f) => {
-          const command = require(`../slashKomutlar/${f}`);
+          const command = require(`../letKomutlar/${f}`);
           if (
             interaction.commandName.toLowerCase() === command.name.toLowerCase()
           ) {
