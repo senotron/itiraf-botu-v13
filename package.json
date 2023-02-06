@@ -1,7 +1,7 @@
 {
-	"name": "gweepcreative",
+	"name": "letcode",
 	"version": "1.0.0",
-	"description": "Gweep Creative Gelişmiş Profil Botu",
+	"description": "MrSn itiraf Botu",
 	"main": "app.js",
 	"scripts": {
 		"start": "node app.js"
