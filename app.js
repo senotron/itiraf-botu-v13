@@ -2,8 +2,7 @@ const fs = require("fs");
 const {Client, Intents, MessageActionRow,MessageButton,MessageEmbed,Collection, ModalBuilder, TextInputBuilder, TextInputStyle, InteractionType} = require("discord.js");
 const { REST } = require("@discordjs/rest");
 const { Routes } = require("discord-api-types/v9");
-const dotenv = require("dotenv")
-dotenv.config({ path: "./.env" })
+const ayarlar = require("config.json");
 const client = new Client({
   fetchAllMembers: true,
   intents:[
@@ -18,11 +17,10 @@ const client = new Client({
     
   ]});
 
-//const dotenv = require("dotenv")
-//dotenv.config({ path: "./.env" })
+
 
 const mongoose = require("mongoose");
-mongoose.connect(process.env.mongoDB)
+mongoose.connect(ayarlar.mongoDB)
 .then(() => console.log('MongoDB bağlandı!'))
 .catch(err => console.log(err))
 
@@ -64,7 +62,7 @@ fs.readdir("./events/", (_err, files) => {
 
 client.on("ready", async () => {
   
-    const rest = new REST({ version: "9" }).setToken(process.env.token);
+    const rest = new REST({ version: "9" }).setToken(ayarlar.token);
 
   try {
     await rest.put(Routes.applicationCommands(client.user.id), {
@@ -76,6 +74,6 @@ client.on("ready", async () => {
 });
 
 
-client.login(process.env.token);
+client.login(ayarlar.token);
 
 
