@@ -18,11 +18,7 @@
 * [Discord Sunucum](https://discord.gg/JVMHNFBhjG)
 
 
-# Kuruluk
-* Eğer .env dosyası gözükmüyorsa .env dosyası oluşturun
-* token değeri ekleyin
-* mongoDB değeri ekleyin
-<img src="https://media.discordapp.net/attachments/1070771762326929520/1070774915453681674/image.png?width=517&height=82">
+
 <h4>MrSn</h4><h6>LetCode</h6>
 
 
