@@ -2,7 +2,7 @@
 
 
  - [Discord İtiraf](https://github.com/MonsterBotTechonolgy/psycho-butonrol)
-      - Altyapı tamamen MrSn#7992 kullanıcısına,yani bana mahsustur.(Yalnız ana dosya Gweep Creative#0001 aittir)
+      - Altyapı tamamen MrSn#7992 kullanıcısına,yani bana mahsustur.
       - [İletişim](#İletişim)
 
 
