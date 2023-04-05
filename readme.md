@@ -1,8 +1,8 @@
 #Discord İtiraf
 
 
- - [Discord İtiraf](https://github.com/MonsterBotTechonolgy/psycho-butonrol)
-      - Altyapı tamamen MrSn#7992 kullanıcısına,yani bana mahsustur.
+ - [Discord İtiraf]([https://github.com/MonsterBotTechonolgy/psycho-butonrol](https://github.com/LetCodes/itiraf-botu-v13))
+      - Altyapı tamamen MrSn  kullanıcısına,yani bana mahsustur.
       - [İletişim](#İletişim)
 
 
@@ -15,7 +15,7 @@
 
 # İletişim
 * [Discord Profilim](https://discord.com/users/840158550495723530)
-* [Discord Sunucum](https://discord.gg/JVMHNFBhjG)
+* [Discord Sunucum](https://discord.gg/9eSePtPChU)
 
 
 
