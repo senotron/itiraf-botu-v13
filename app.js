@@ -1,5 +1,5 @@
 const fs = require("fs");
-const {Client, Intents, MessageActionRow,MessageButton,MessageEmbed,Collection, ModalBuilder, TextInputBuilder, TextInputStyle, InteractionType} = require("discord.js");
+const { Client, Intents, MessageActionRow, MessageButton, MessageEmbed, Collection, ModalBuilder, TextInputBuilder, TextInputStyle, InteractionType} = require("discord.js");
 const { REST } = require("@discordjs/rest");
 const { Routes } = require("discord-api-types/v9");
 const ayarlar = require("config.json");
@@ -42,7 +42,6 @@ fs.readdir("./letKomutlar/", (err, files) => {
           
              
         })
-        console.log(`Komut Yüklendi: ${props.name}`);
     });
 })
 ;
@@ -52,7 +51,6 @@ fs.readdir("./events/", (_err, files) => {
         const event = require(`./events/${file}`);
         let eventName = file.split(".")[0];
         
-        console.log(`Event yüklendi: ${eventName}`);
         client.on(eventName, (...args) => {
            event(client, ...args);
         });
