@@ -1,4 +1,4 @@
 module.exports = (client, interaction) => {
-    console.log(`${client.user.tag} ismi ile giriş yapıldı`);
-    client.user.setPresence({activities: [{name:"LetCode",status:"dnd"}], });   
+    console.log(`${client.user.tag} online!`);
+    client.user.setPresence({activities: [{name:"senotron",status:"dnd"}], });   
 };
