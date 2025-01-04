@@ -1,33 +1,20 @@
-const {CLient, CommandInteraction, ButtonInteraction, MessageEmbed, MessageButton, MessageActionRow, Collection} = require("discord.js");
+const { Client, CommandInteraction, ButtonInteraction } = require("discord.js");
 const fs = require("fs");
 
-/**
- * 
- * @param {Client} client 
- * @param {CommandInteraction} interaction 
- * @param {ButtonInteraction} button
- */
-module.exports = async (client, interaction, button) => {
-    if (interaction.isCommand()){
+module.exports = async (client, interaction) => {
+  if (interaction.isCommand()) {
     try {
-      fs.readdir("./letKomutlar/", (err, files) => {
-        if (err) throw err;
+      const files = fs.readdirSync("./letKomutlar/");
 
-        files.forEach(async (f) => {
-          const command = require(`../letKomutlar/${f}`);
-          if (
-            interaction.commandName.toLowerCase() === command.name.toLowerCase()
-          ) {
-            return command.run(client, interaction);
-          }
-        });
-      });
+      for (const file of files) {
+        const command = require(`../letKomutlar/${file}`);
+
+        if (interaction.commandName.toLowerCase() === command.name.toLowerCase()) {
+          return command.run(client, interaction);
+        }
+      }
     } catch (err) {
-      console.error(err);
+      console.error("Komut çalıştırılırken bir hata oluştu:", err);
     }
   }
-
-  
-  
-  
 };
