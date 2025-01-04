@@ -1,71 +1,75 @@
-const {Client, CommandInteraction, MessageEmbed, Permissions} = require("discord.js");
+const { Client, CommandInteraction, MessageEmbed } = require("discord.js");
 const model = require("../models/guild");
+
 module.exports = {
   slash: true,
   enable: true,
   name: "itiraf-yap",
-  description: 'İtiraf yaparsın',
+  description: "İtiraf yaparsın",
   options: [
-
-          { 
-          name: "itiraf",
-          description: "İtiraf yaz", 
-          type: 3, 
-          required: true
-      }
-    
+    {
+      name: "itiraf",
+      description: "İtiraf yaz",
+      type: 3,
+      required: true,
+    },
   ],
- run: async (client, interaction) => {  
-  const uye = interaction.member
-  const itiraf = interaction.options.getString("itiraf");
 
-        const { itirafChannel } = await model.findOne({ GuildID: interaction.guild.id }) || { itirafChannel: null };
-        if (!itirafChannel) return;
-      
-        const channel = interaction.guild.channels.cache.get(itirafChannel);
-      //--------------İtiraf kanalına mesaj gönderme
+  run: async (client, interaction) => {
+    const uye = interaction.member;
+    const itiraf = interaction.options.getString("itiraf");
 
-        try{
+    const { itirafChannel, itirafadminChannel } = await model.findOne({ GuildID: interaction.guild.id }) || {};
+
+    if (!itirafChannel && !itirafadminChannel) {
+      return interaction.reply({ content: "İtiraf sistemi aktif değil veya kanallar ayarlanmamış.", ephemeral: true });
+    }
+
+    if (itirafChannel) {
+      const channel = interaction.guild.channels.cache.get(itirafChannel);
+
+      if (channel) {
+        try {
           channel.send({
-            embeds: [new MessageEmbed()
-              .setDescription(`Hey millet! Yeni bir itiraf geldi! \r\n ---------- \r\n Ama itirafın sahibinin kim olduğunu size söyleyemem.\r\n ---------- \r\n İşte gizli kişinin yaptığı itiraf; \r\n || ${itiraf} ||`)
-              .setColor("#2ACAEA")
-              .setFooter({text:`${interaction.guild.name}`})
-              .setTimestamp()
-            ]
-          })
+            embeds: [
+              new MessageEmbed()
+                .setDescription(
+                  `Hey millet! Yeni bir itiraf geldi! \n----------\nAma itirafın sahibinin kim olduğunu size söyleyemem.\n----------\nİşte gizli kişinin yaptığı itiraf;\n|| ${itiraf} ||`
+                )
+                .setColor("#2ACAEA")
+                .setFooter({ text: `${interaction.guild.name}` })
+                .setTimestamp(),
+            ],
+          });
+        } catch (err) {
+          console.error("İtiraf kanalına mesaj gönderilirken bir hata oluştu:", err);
         }
-         //--------------İtiraf kanalına mesaj gönderme
+      }
+    }
 
-        catch{
-      
-          
-          
-          
-        }
-   //--------------İtiraf-admin kanalına mesaj gönderme
-const { itirafadminChannel } = await model.findOne({ GuildID: interaction.guild.id }) || { itirafadminChannel: null };
-        if (!itirafadminChannel) return;
-      
-        const chanmnel = interaction.guild.channels.cache.get(itirafadminChannel);
-        try{
-          chanmnel.send({
-            embeds: [new MessageEmbed()
-              .setAuthor({name:interaction.user.tag,iconURL: interaction.user.avatarURL()})   
-              .setDescription(`Hey admin! Yeni bir itiraf geldi! \r\n ---------- \r\n İtirafın sahibi: ${uye}\r\n ---------- \r\n İşte  kişinin yaptığı itiraf; \r\n || ${itiraf} ||`)
-              .setColor("#2ACAEA")
-              .setFooter({text:`${interaction.guild.name}`})
-              .setTimestamp()
-            ]
-          })
-        }
-      //--------------İtiraf-admin kanalına mesaj gönderme
+    if (itirafadminChannel) {
+      const adminChannel = interaction.guild.channels.cache.get(itirafadminChannel);
 
-        catch{
-      
+      if (adminChannel) {
+        try {
+          adminChannel.send({
+            embeds: [
+              new MessageEmbed()
+                .setAuthor({ name: interaction.user.tag, iconURL: interaction.user.avatarURL() })
+                .setDescription(
+                  `Hey admin! Yeni bir itiraf geldi!\n----------\nİtirafın sahibi: ${uye}\n----------\nİşte kişinin yaptığı itiraf;\n|| ${itiraf} ||`
+                )
+                .setColor("#2ACAEA")
+                .setFooter({ text: `${interaction.guild.name}` })
+                .setTimestamp(),
+            ],
+          });
+        } catch (err) {
+          console.error("Admin kanalına mesaj gönderilirken bir hata oluştu:", err);
         }
-   interaction.reply({content: `İtirafın gönderildi.`, ephemeral: true});
-   
-   
-},
+      }
+    }
+
+    interaction.reply({ content: "İtirafın gönderildi.", ephemeral: true });
+  },
 };
