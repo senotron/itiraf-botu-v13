@@ -3,7 +3,7 @@
 
 # İletişim
 * [Discord Profilim](https://discord.com/users/840158550495723530)
-* [Sitr](https://senotron.vercel.app)
+* [Site](https://senotron.vercel.app)
 
 
 
