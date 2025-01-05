@@ -1,3 +1,5 @@
+# 🌟 Star please <3
+
  - [Discord İtiraf](https://github.com/senotron/itiraf-botu-v13)
       - Altyapı tamamen senotron  kullanıcısına,yani bana mahsustur.
 
